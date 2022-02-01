@@ -16,10 +16,12 @@
 // -------------
 
 function square(arr) {
-    return arr.map(function (element) {
-        return Math.pow(element, 2);
-      });
-}
+  return arr.map(function (element) {
+    return Math.pow(element, 2);
+  });
+
+
+ }
 
 // 2) ------------------
 //
@@ -57,11 +59,18 @@ function square(arr) {
 //
 
 function fullName(arr) {
-   let fullAuthorNames = arr
-    .map(authors => `${fullAuthorNames.firstName} ${fullAuthorNames.lastName}`);
- 
-  return fullAuthorNames;
+    // write your code here
+    
+   let thefullname = arr.map((stu)=> {
+     
+    return '${stu.firstName} ${stu.lastName}';
+      
+    
+  });
+  return thefullname;
+
 }
+
 // 3) ---------------------
 // 
 // Given an array of objects use map to calculate the average of the grades 
@@ -122,6 +131,10 @@ function fullName(arr) {
 
 function gradesAvg(arr) {
     // write your code here
+    let total = 0;
+
+    
+
 }
 
 
