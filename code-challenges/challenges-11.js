@@ -67,8 +67,7 @@ function fullName(arr) {
       
     
   });
-  return thefullname;
-
+ 
 }
 
 // 3) ---------------------
