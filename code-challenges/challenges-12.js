@@ -86,8 +86,8 @@ const cvsFiltration = (arr) => {
 
 const vowelsFiltration = (arr) => {
     let rex = /^[aeiou]/i;
-    let results = arr.filter(str => rex.test(str));
-    return results;
+    return arr.filter(str => rex.test(str));
+   
 } 
 
 // 4) ---------------------
