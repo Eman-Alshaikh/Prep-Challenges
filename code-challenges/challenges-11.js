@@ -61,12 +61,13 @@ function square(arr) {
 function fullName(arr) {
     // write your code here
     
-   let fullNameArr = [];
+    let fullNameArr = [];
     arr.map((item) => fullNameArr.push(`${item.firstName} ${item.lastName}`));
     return fullNameArr;
      
  
 }
+ 
  
  
 // 3) ---------------------
@@ -129,6 +130,7 @@ function fullName(arr) {
 
 function gradesAvg(arr) {
     // write your code here
+ 
     let result=arr.map(obj=>{
       let sum=0;
       let newArr=obj.gradsList.map(x=>{sum=sum+x});
@@ -136,6 +138,7 @@ function gradesAvg(arr) {
       return obj;
   });
   return result;
+ 
 }
 
 
