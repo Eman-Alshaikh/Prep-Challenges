@@ -16,10 +16,12 @@
 // -------------
 
 function square(arr) {
-    return arr.map(function (element) {
-        return Math.pow(element, 2);
-      });
-}
+  return arr.map(function (element) {
+    return Math.pow(element, 2);
+  });
+
+
+ }
 
 // 2) ------------------
 //
@@ -57,11 +59,16 @@ function square(arr) {
 //
 
 function fullName(arr) {
-   let fullAuthorNames = arr
-    .map(authors => `${fullAuthorNames.firstName} ${fullAuthorNames.lastName}`);
+    // write your code here
+    
+   let fullNameArr = [];
+    arr.map((item) => fullNameArr.push(`${item.firstName} ${item.lastName}`));
+    return fullNameArr;
+     
  
-  return fullAuthorNames;
 }
+ 
+ 
 // 3) ---------------------
 // 
 // Given an array of objects use map to calculate the average of the grades 
@@ -122,6 +129,13 @@ function fullName(arr) {
 
 function gradesAvg(arr) {
     // write your code here
+    let result=arr.map(obj=>{
+      let sum=0;
+      let newArr=obj.gradsList.map(x=>{sum=sum+x});
+      obj['avg']=sum/newArr.length;
+      return obj;
+  });
+  return result;
 }
 
 
@@ -193,6 +207,18 @@ function gradesAvg(arr) {
 
 function studentsResult(arr) {
     // write your code here
+    let result=arr.map(obj=>{
+      if(obj.avg>=50)
+      {
+          obj['result']="Passed";
+      }
+      else
+      {
+          obj['result']="Failed";
+      }
+      return obj;
+  });
+  return result;
 }
 
-module.exports = { square, fullName, gradesAvg, studentsResult };
+module.exports = { square, fullName, gradesAvg, studentsResult }
