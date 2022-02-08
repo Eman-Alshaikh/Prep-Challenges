@@ -65,15 +65,15 @@ const oddFiltration = (arr) => {
 //  2- If one of the names is null dont add it to the full name
 // ------------------------
 
-const cvsFiltration = (arr) => {
-    /*
-    var newArray = arr.filter(function (el) {
-        return  {
-            yearsOfExperience >4 &&
-               el.tech =="js";
-               } 
-      });*/
-}
+ 
+    const cvsFiltration = (arr) => arr.filter(item => item.yearsOfExperience>4 && item.tech === 'JS'&& item.firstName !== null && item.LastName !== null).map(item => {
+        item["fullName"]  = `${item.firstName} ${item.LastName}`;
+        delete item.firstName;
+        delete item.LastName;
+        delete item.yearsOfExperience;
+        return item;
+    });
+ 
 
 // 3) ---------------------
 //
@@ -85,10 +85,9 @@ const cvsFiltration = (arr) => {
 // ------------------------
 
 const vowelsFiltration = (arr) => {
-    let rex = /^[aeiou]/i;
-    return arr.filter(str => rex.test(str));
-   
-} 
+    let vowel = arr.filter((str) => !/[aeiou]/.test(str));
+    return vowel;
+}
 
 // 4) ---------------------
 //
@@ -106,6 +105,15 @@ const vowelsFiltration = (arr) => {
 
 const skillComparison = (arr1, arr2) => {
     // write your code here
+  
+    let difference = arr1
+    .filter((x) => !arr2.includes(x))
+    .concat(arr2.filter((x) => !arr1.includes(x)));
+  return difference;
+   
+
+
+ 
 }
 
 

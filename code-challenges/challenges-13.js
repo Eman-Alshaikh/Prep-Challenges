@@ -39,10 +39,12 @@
 
 const objectCounter = (obj) => {
     // write your code here
-
-    var enabledCount = obj.reduce(
-        (accumulator, currentValue) => accumulator.concat(currentValue), []
-      ).filter(item => item.enabled).length
+    let counter = 0;
+    for (let i = 0; i < obj.length; i++) {
+        counter++;
+    }
+    return(counter); 
+    
       
 
 }
@@ -62,7 +64,16 @@ const objectCounter = (obj) => {
 
 const stringReverse = (str) => {
     // write your code here
-
+    let arr=str.split(" ");
+    let reverse=arr.reduce((p,c,i)=>{
+        if(i==0)
+        {
+           return `${c}${p}`;
+        }
+       return `${c} ${p}`;
+    },'');
+    return reverse;
+  
 }
 
 // 3) ---------------------
@@ -105,6 +116,24 @@ const stringReverse = (str) => {
 
 const statistics = (obj) => {
     // write your code here
+    let arr=[];
+    let count;
+    let res={};
+    obj.reduce((p,c)=>{
+        arr.push(c.votes_To);
+    },'');
+    arr.reduce((p1,c1,index)=>{
+        count=0;
+        arr.reduce((p2,c2,i)=>{
+            if(c1==c2)
+            {
+                count++;
+            }
+        },'');
+        
+        res[[c1]]=count;
+    },'');
+    return res;
 }
 
 
