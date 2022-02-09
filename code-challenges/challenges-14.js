@@ -1,3 +1,4 @@
+14
 'use strict';
 
 // Resource:
@@ -144,5 +145,5 @@ const letterCounter = (str) => {
 }
 
 
-
 module.exports = { LastWord, LastWord_2, replaceWords, arrToStr, letterCounter };
+
