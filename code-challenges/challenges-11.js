@@ -1,227 +1,76 @@
-'use strict';
+ 'use strict';
 
-// Important Note:
-// Kindly use map loop instead of for in all of your solutions
+const fs = require('fs');
 
-// Resource:
-// Map: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
 
-// 1) ---------------------
-// 
-// Given an array of values use map to calculate the square of the values.
-//  
-// EX:
-// [ 2, 8, 3, 5 ] ==> [ 4, 64, 9, 25 ]
-// 
-// -------------
+let inputString = '';
+let currentLine = 0;
 
-function square(arr) {
-  return arr.map(function (element) {
-    return Math.pow(element, 2);
-  });
+process.stdin.on('data', function(inputStdin) 
+{
+    inputString += inputStdin;
+});
 
+process.stdin.on('end', function()
+ {
+    inputString = inputString.split('\n');
 
- }
+    main();
+});
 
-// 2) ------------------
-//
-// Ex:
-// [
-//     {
-//         firstName: 'Adam',
-//         lastName: 'Anderson',
-//     },
-//     {
-//         firstName: 'Ben',
-//         lastName: 'Zeller',
-//     }, 
-//     {
-//         firstName: 'Peter',
-//         lastName: 'Mccord',
-//     },
-//     {
-//         firstName: 'Fred',
-//         lastName: 'Sagar',
-//     },
-//     {
-//         firstName: 'Nathan',
-//         lastName: 'Weiss',
-//     }
-// ]
-//
-//
-// Output ==>['Adam Anderson', 'Ben Zeller', 'Peter Mccord', 'Fred Sagar', 'Nathan Weiss']
-// 
-//
-// Given an array of objects of student's first and last name, use the map to return an array off student's full names.
-//
-// note: the full names should be combined between student's first and last names.
-//
-
-function fullName(arr) {
-    // write your code here
-    
-    let fullNameArr = [];
-    arr.map((item) => fullNameArr.push(`${item.firstName} ${item.lastName}`));
-    return fullNameArr;
-     
- 
+function readLine()
+ {
+    return inputString[currentLine++];
 }
- 
- 
- 
-// 3) ---------------------
-// 
-// Given an array of objects use map to calculate the average of the grades 
-// and return an array of the objects with a new property called avg (that represent the average of the grades).
-//  
 
-// EX:
-// var students = [
-// 	{
-// 			firstName: 'Adam',
-//      lastName: 'Anderson',
-// 			gradsList: [20, 50, 13, 11, 2, 45, 60, 29]
-// },
-// {
-// 			firstName: 'Ben',
-//      lastNAme: 'Zeller',
-// 			gradsList: [20, 10, 11, 11, 2, 5, 3, 2]
-// },
-// {
-// 			firstName: 'Peter',
-//      lastName: 'Mccord',
-// 	    gradsList: [62, 50, 80, 90, 39, 45, 60, 50]
-// },
-// {
-// 			firstName: 'Fred',
-//      lastNAme: 'Sagar',
-// 			gradsList: [20, 10, 18, 11, 2, 20, 3, 10]
-// }
-// ]
-// results =>
-//[
-// 	{
-// 			firstName: 'Adam',
-//      lastName: 'Anderson',
-// 			gradsList: [20,50,13,11,2,45,60,29],
-// 			avg: 28.75
-// },
-// {
-// 			firstName: 'Ben',
-//      lastNAme: 'Zeller',
-// 			gradsList: [20,10,11,11,2,5,3,2],
-//			avg: 8
-// },
-// {
-// 			firstName: 'Peter',
-//      lastName: 'Mccord',
-// 	    gradsList: [62,50,80,90,39,45,60,50],
-//			avg: 59.5
-// },
-// {
-// 			firstName: 'Fred',
-//      lastNAme: 'Sagar',
-// 			gradsList: [20,10,18,11,2,20,3,10],
-//      avg: 11.75
-// 	}
-//]
-// -------------
+/*
+ * Complete the 'equalizeArray' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts INTEGER_ARRAY arr as parameter.
+ */
 
-function gradesAvg(arr) {
-    // write your code here
+function equalizeArray(arr) {
+    // Write your code here
+   let equalize = new Map();
+    let theCount = 0;
+    arr.forEach((elementInArray) => 
+    {
+        if (equalize.has(elementInArray))
+         {
+            let a = equalize.get(elementInArray) + 1;
+           equalize .set(elementInArray, a);
+            if (a> theCount) {
+                theCount = a;
+            }
+        } else 
+        {
+           equalize.set(elementInArray, 1);
+            if (theCount == 0)
+             {
+                theCount = 1;
+            }
+        }
+    });
  
-    let result=arr.map(obj=>{
-      let sum=0;
-      let newArr=obj.gradsList.map(x=>{sum=sum+x});
-      obj['avg']=sum/newArr.length;
-      return obj;
-  });
-  return result;
- 
+    return arr.length - theCount;
+
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const n = parseInt(readLine().trim(), 10);
+
+    const arr = readLine().replace(/\s+$/g, '').split(' ').map(arrTemp => parseInt(arrTemp, 10));
+
+    const result = equalizeArray(arr);
+
+    ws.write(result + '\n');
+
+    ws.end();
 }
 
 
-// 4) ---------------------
-//
-// Using the previous function result, determine if the student pass or failed,
-// and return the array of the object with a new property called result (with Passed or Failed)//  
-//
-//	note : if his/her avg equal or above 50 the result will be Passed, and Failed if it's less than that
-// EX:
-// var students = [
-// 	{
-// 			firstName: 'Adam',
-//      lastName: 'Anderson',
-// 			gradsList: [20,50,13,11,2,45,60,29],
-// 			avg: 28.75
-// },
-// {
-// 			firstName: 'Ben',
-//      lastNAme: 'Zeller',
-// 			gradsList: [20,10,11,11,2,5,3,2],
-//			avg: 8
-// },
-// {
-// 			firstName: 'Peter',
-//      lastName: 'Mccord',
-// 	    gradsList: [62,50,80,90,39,45,60,50],
-//			avg: 59.5
-// },
-// {
-// 			firstName: 'Fred',
-//      lastNAme: 'Sagar',
-// 			gradsList: [20,10,18,11,2,20,3,10],
-//      avg: 11.75
-// 	}
-//]
-// results =>
-//[
-// 	{
-// 			firstName: 'Adam',
-//      lastName: 'Anderson',
-// 			gradsList: [20,50,13,11,2,45,60,29],
-// 			avg: 28.75,
-//      result: 'Failed'
-// },
-// {
-// 			firstName: 'Ben',
-//      lastNAme: 'Zeller',
-// 			gradsList: [20,10,11,11,2,5,3,2],
-//			avg: 8,
-//      result: 'Failed'
-// },
-// {
-// 			firstName: 'Peter',
-//      lastName: 'Mccord',
-// 	    gradsList: [62,50,80,90,39,45,60,50],
-//			avg: 59.5,
-//      result: 'Passed'
-// },
-// {
-// 			firstName: 'Fred',
-//      lastNAme: 'Sagar',
-// 			gradsList: [20,10,18,11,2,20,3,10],
-//      avg: 11.75,
-//      result: 'Failed'
-// 	}
-//]
-// -------------
-
-function studentsResult(arr) {
-    // write your code here
-    let result=arr.map(obj=>{
-      if(obj.avg>=50)
-      {
-          obj['result']="Passed";
-      }
-      else
-      {
-          obj['result']="Failed";
-      }
-      return obj;
-  });
-  return result;
-}
-
-module.exports = { square, fullName, gradesAvg, studentsResult }
