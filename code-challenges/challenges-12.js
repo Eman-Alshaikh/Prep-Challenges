@@ -79,7 +79,6 @@ const cvsFiltration = (arr) => arr.filter(candidate => candidate.yearsOfExperien
 });
 
 
-
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
@@ -94,11 +93,11 @@ const cvsFiltration = (arr) => arr.filter(candidate => candidate.yearsOfExperien
 
 const vowelsFiltration = (arr) => {
     // write your code here
-    let result = arr.filter((string) => !/[aeiou]/.test(string));
-    return result ;
- }
- 
- 
+        // write your code here
+        let result = arr.filter((string) => !/[aeiou]/.test(string));
+        return result ;
+    
+} 
 // -------------------------------------------------------------------------------------------------------
 
 // -------------------------------------------------------------------------------------------------------
@@ -121,12 +120,11 @@ const vowelsFiltration = (arr) => {
 const skillComparison = (arr1, arr2) => {
     // write your code here
     let difference = arr1
-    .filter((x) => !arr2.includes(x))
-    .concat(arr2.filter((x) => !arr1.includes(x)));
-  return difference;
-   
- 
- 
+   .filter((x) => !arr2.includes(x))
+   .concat(arr2.filter((x) => !arr1.includes(x)));
+ return difference;
+  
+
 }
 // -------------------------------------------------------------------------------------------------------
 
