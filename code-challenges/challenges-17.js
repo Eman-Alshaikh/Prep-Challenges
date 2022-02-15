@@ -27,6 +27,7 @@ const recursionPattern = (int1, int2) => {
      else {
         let newar = recursionPattern(int1 - int2, int2)
         let myarray = newar.flat(Infinity);
+        console.log(myarray);
 
         myarray.push(int1);
        myarray.unshift(int1)
@@ -54,6 +55,7 @@ const filterLinks = (str) => {
     // write your code here
     let array = str.split("/");
     let links = array[2].split('"');
+    console.log(array[2]);
     return links[0];
 }
 // -------------------------------------------------------------------------------------------------------
